@@ -22,5 +22,87 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans);
 }
+
+@layer utilities {
+  .animate-in {
+    animation-delay: var(--tw-enter-delay, 0s);
+    animation-duration: var(--tw-enter-duration, 500ms);
+    animation-fill-mode: both;
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .fade-in {
+    --tw-enter-opacity: 0;
+    animation-name: enter-fade;
+  }
+
+  .slide-in-from-bottom-8 {
+    --tw-enter-translate-y: 2rem;
+    animation-name: enter-slide-from-bottom;
+  }
+
+  .slide-in-from-left-8 {
+    --tw-enter-translate-x: -2rem;
+    animation-name: enter-slide-from-left;
+  }
+
+  .slide-in-from-right-12 {
+     --tw-enter-translate-x: 3rem;
+     animation-name: enter-slide-from-right;
+  }
+
+  .zoom-in {
+    --tw-enter-scale: 0.95;
+    animation-name: enter-zoom;
+  }
+
+  .shake {
+    animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  }
+
+  .bounce-in {
+    animation: bounce-in 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) both;
+  }
+}
+
+@keyframes enter-fade {
+  from { opacity: var(--tw-enter-opacity, 0); }
+  to { opacity: 1; }
+}
+
+@keyframes enter-slide-from-bottom {
+  from { transform: translateY(var(--tw-enter-translate-y, 100%)); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes enter-slide-from-left {
+  from { transform: translateX(var(--tw-enter-translate-x, -100%)); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes enter-slide-from-right {
+  from { transform: translateX(var(--tw-enter-translate-x, 100%)); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes enter-zoom {
+  from { transform: scale(var(--tw-enter-scale, 0)); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0); }
+  20%, 80% { transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+  40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+@keyframes bounce-in {
+  0% { transform: scale(0.3); opacity: 0; }
+  50% { transform: scale(1.05); opacity: 1; }
+  70% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
